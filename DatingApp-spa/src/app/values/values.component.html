@@ -1,0 +1,12 @@
+<p >
+  values works!
+</p>
+<button class="btn btn-success" type="button" (click)="showValues()"> Show data</button>
+<hr>
+<div *ngIf="activate">
+
+    <fa-icon [icon]="faBiohazard"></fa-icon>
+
+  <div *ngFor="let valueGet of values"> id:{{valueGet.id}} || name:{{valueGet.name}} 
+  </div>
+</div>

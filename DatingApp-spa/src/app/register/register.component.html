@@ -1,0 +1,97 @@
+<div *ngIf="load">
+  <app-load-spinner></app-load-spinner>
+</div>
+
+<div *ngIf="!load">
+  <div class="container">
+    <div
+      class="row justify-content-md-center col-md-auto "
+      style="text-align: center"
+    >
+      <form [formGroup]="registerForm" readonly>
+        <h2 class="text-center text-primary">Unete a nosotros</h2>
+        <hr />
+        <div class="form-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <fa-icon [icon]="faUserAlt"></fa-icon>
+            </span>
+            <input
+              type="text"
+              formControlName="username"
+              class="form-control"
+              placeholder="Username"
+            />
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top: 20px">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <fa-icon [icon]="faToriiGate"></fa-icon>
+            </span>
+            <select formControlName="value" class="form-control">
+              <option
+                selected
+                *ngFor="let value of valuesFromHome"
+                [value]="value"
+                >{{ value.name }}</option
+              >
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top: 20px">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <fa-icon [icon]="faKey"></fa-icon>
+            </span>
+            <input
+              type="password"
+              formControlName="password"
+              class="form-control"
+              placeholder="Password"
+            />
+          </div>
+        </div>
+
+        <button
+          class="btn btn-success btn-lg mr-2"
+          type="submit"
+          (click)="register()"
+        >
+          Register now
+        </button>
+        <button
+          style="margin-left: 40px;"
+          class="btn btn-success btn-lg mr-2"
+          type="button"
+          (click)="cancelEvent()"
+        >
+          Cancel
+        </button>
+      </form>
+
+      <!-- <form [formGroup]="registerForm">
+    <div class="form-group">
+        <label for="email">Username</label>
+        <input type="text" 
+        id="username" 
+        class="form-control"
+        formControlName="username"
+        >
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" 
+        id="password"
+         class="form-control"
+         formControlName="password">
+    </div>
+    <div>
+        <button class="btn btn-success" type="button" > Register now</button> 
+    </div>
+</form> -->
+    </div>
+  </div>
+</div>

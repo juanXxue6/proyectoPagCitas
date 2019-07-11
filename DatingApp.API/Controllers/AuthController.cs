@@ -19,30 +19,30 @@ namespace DatingApp.API.Controllers
     {
 
         private readonly IAuthRepository _repo;
-        
+
         private readonly IConfiguration _config;
 
 
         public AuthController(IAuthRepository repo, IConfiguration config)
         {
-            _repo = repo; 
+            _repo = repo;
             _config = config;
 
         }
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserForRegisterDto UserForRegisterDto)
         {
-                //validate request
+            //validate request
 
-                UserForRegisterDto.Username = UserForRegisterDto.Username.ToLower();
+            UserForRegisterDto.Username = UserForRegisterDto.Username.ToLower();
 
-                if (await _repo.UserExist(UserForRegisterDto.Username))
-                    return BadRequest("Username alredy exists");
+            if (await _repo.UserExist(UserForRegisterDto.Username))
+                return BadRequest("Username alredy exists");
 
             var useToCreate = new User
             {
 
-                    Username = UserForRegisterDto.Username
+                Username = UserForRegisterDto.Username
 
             };
 
@@ -57,11 +57,15 @@ namespace DatingApp.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
-            var userFromRepo = await _repo.Login(userForLoginDto.Username.ToLower(), userForLoginDto.Password);
+
+           
+               
+
+                var userFromRepo = await _repo.Login(userForLoginDto.Username.ToLower(), userForLoginDto.Password);
 
 
-            if(userFromRepo == null)
-                return Unauthorized();
+                if (userFromRepo == null)
+                    return Unauthorized();
 
 
                 var claims = new[]
@@ -80,9 +84,9 @@ namespace DatingApp.API.Controllers
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
 
-                        Subject = new ClaimsIdentity(claims),
-                        Expires = DateTime.Now.AddDays(1),
-                        SigningCredentials = creds
+                    Subject = new ClaimsIdentity(claims),
+                    Expires = DateTime.Now.AddDays(1),
+                    SigningCredentials = creds
 
 
                 };
@@ -92,10 +96,13 @@ namespace DatingApp.API.Controllers
                 var token = tokenHandler.CreateToken(tokenDescriptor);
 
 
-            return Ok (new {
+                return Ok(new
+                {
 
-                token = tokenHandler.WriteToken(token)
-            });
+                    token = tokenHandler.WriteToken(token)
+                });
+           
+
         }
 
     }

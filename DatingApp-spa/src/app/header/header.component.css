@@ -1,8 +1,6 @@
-
-
 a.active,
 a.active:hover,
 a.active:focus,
 a:active:active {
-  background: rgb(68, 66, 66);
+  background: rgb(50, 49, 53);
 }

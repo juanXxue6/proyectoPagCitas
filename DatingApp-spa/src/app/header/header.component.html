@@ -1,77 +1,116 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" routerLink="/home">
     <fa-icon [icon]="faFireAlt"></fa-icon>
     DateApp
   </a>
 
   <div class="collapse navbar-collapse">
-    
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Matches <span class="sr-only"></span></a>
+    <ul  class="navbar-nav mr-auto">
+      <li *ngIf="loggedIn()"  class="nav-item active">
+        <a class="nav-link">
+          <fa-icon [icon]="faUserTag" style="margin-right: 4px"></fa-icon>
+          Bienvenido {{ authService.decodedToken?.unique_name | titlecase}}
+          <span class="sr-only"></span
+        ></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">List</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Messages</a>
-      </li>
-    </ul>
-
-    <div *ngIf="!login">
       
-    <form class="form-inline" [formGroup]="formLogin" 
-      (ngSubmit)="onSubmit()">
+     
+      
+      <li *ngIf="loggedIn()" class="nav-item ">
+        <a class="nav-link" routerLinkActive="active" routerLink="/matches">Matches <span class="sr-only"></span></a>
+      </li>
+      <li *ngIf="loggedIn()" class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/list">List</a>
+      </li>
+      <li *ngIf="loggedIn()" class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/messages">Messages</a>
+      </li>
+    
+    </ul>
+  
 
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text" >
-            <fa-icon [icon]="faUserAlt"></fa-icon>
-          </span>
-        </div>
-        <input 
-        type="text"
-        formControlName="username" 
-        class="form-control"
-        placeholder="Username">
-      </div>
-
-      <div class="input-group" style="margin-left: 20px">
+    <div *ngIf="!loggedIn()">
+      <form class="form-inline" [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+        <div class="input-group">
           <div class="input-group-prepend">
-            <span class="input-group-text" >
+            <span class="input-group-text">
+              <fa-icon [icon]="faUserAlt"></fa-icon>
+            </span>
+          </div>
+          <input
+            type="text"
+            formControlName="username"
+            class="form-control"
+            placeholder="Username"
+          />
+        </div>
+
+        <div class="input-group" style="margin-left: 20px">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
               <fa-icon [icon]="faKey"></fa-icon>
             </span>
           </div>
-          <input 
-          type="password"
-          formControlName="password" 
-          class="form-control" 
-           placeholder="Password">
+          <input
+            type="password"
+            formControlName="password"
+            class="form-control"
+            placeholder="Password"
+          />
         </div>
 
-        <button [disabled] = "!formLogin.valid" style="margin-left: 20px" class="btn btn-success" type="submit" > Login </button>
-        
-      </form >
-  </div>
+        <button
+          [disabled]="!formLogin.valid"
+          style="margin-left: 20px"
+          class="btn btn-success"
+          type="submit"
+        >
+          Login
+        </button>
+      </form>
+    </div>
 
-  <div *ngIf="login">
+    <div *ngIf="loggedIn()">
+      <ul class="navbar-nav mr-auto">
+        <li appDropdown class="nav-item dropdown" appDropdown #r="appDropdown">
+            
+          <a
+            style="cursor: pointer"
+            class="dropdown-toggle nav-link"
+            role="button">
+            <fa-icon [icon]="faUserCircle"></fa-icon>
+            Profile<span class="caret sr-only"></span
+          ></a>
 
-  <ul class="navbar-nav mr-auto">
-      <li appDropdown class="nav-item  dropdown" appDropdown #r="appDropdown">
-
-          <a style="cursor: pointer" class="dropdown-toggle nav-link" role="button">Profile<span class="caret sr-only"></span></a>
           
-          <ul class="dropdown-menu bg-dark" [ngClass]="{'show':r.isOpen}">
-            <li class="nav-item "><a class="dropdown-item nav-link" style="cursor: pointer">Account</a></li>
-            <li class="nav-item "><a class="dropdown-item nav-link" style="cursor: pointer" >Options</a></li>
+
+
+          <ul class="dropdown-menu bg-dark" [ngClass]="{ show: r.isOpen }">
+            <li class="nav-item ">
+              <a class="nav-link" style="cursor: pointer">
+                <span class="sr-only"></span>Account</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class=" nav-link" style="cursor: pointer">
+                <span class="sr-only"></span>Options</a
+              >
+            </li>
           </ul>
-      </li>
-      <button *ngIf="login" style="margin-left: 20px" class="btn btn-success" type="button" (click)="logout()"> Logout </button>
-  </ul>
-  
-</div>
+        </li>
+        <button
+          *ngIf="loggedIn()"
+          style="margin-left: 20px"
+          class="btn btn-success"
+          type="button"
+          (click)="logout()"
+        >
+          Logout
+        </button>
+      </ul>
+    </div>
   </div>
 </nav>
 <div *ngIf="load">
-<app-load-spinner></app-load-spinner>
+  <app-load-spinner></app-load-spinner>
 </div>

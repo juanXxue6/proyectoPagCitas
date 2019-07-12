@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { faKey, faUserAlt, faToriiGate } from '@fortawesome/free-solid-svg-icons';
-import { AuthService } from '../Services/Auth.service';
+import { AuthService } from '../../shared/Services/Auth.service';
+import { AlertsService } from '../../shared/Services/Alerts.service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,8 @@ export class RegisterComponent implements OnInit {
   faToriiGate = faToriiGate;
   load: boolean = false;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+              private alerts: AlertsService) { }
 
   ngOnInit() {
 
@@ -41,33 +43,31 @@ export class RegisterComponent implements OnInit {
   }
 
 register(){
+            this.authService
+              .register(this.registerForm.value)
+              .subscribe(
+                () => {
+                  this.load = true;
 
-  this.authService.register(this.registerForm.value)
-  .subscribe(()=>{
-    this.load = true;
+                  setTimeout(() => {
+                    this.alerts.success("Registrado correctamnte :D");
 
-    setTimeout(()=>{
-      console.log('Usted se ha registrado correctamente :D');
-    
-      this.load = false;
+                    this.load = false;
+                  }, 1500);
+                },
+                error => {
+                  this.load = true;
+                  setTimeout(() => {
+                    this.alerts.error(
+                      "Un error ha ocurrido: " + error
+                    );
 
-    },1500)
-
-   
- }, error => {
-  this.load = true;
-  setTimeout(()=>{
-    console.log('no se ha podido registrar correctamente D:');
-    
-    this.load = false;
-    console.log(error)
-
-  },1500)
-
-  });
-
-
-}
+                    this.load = false;
+                    console.log(error);
+                  }, 1500);
+                }
+              );
+          }
 
 
 }

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { faFireAlt, faUserAlt, faKey } from '@fortawesome/free-solid-svg-icons';
+import { faFireAlt, faUserAlt, faKey, faUserTag, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from '../Services/Auth.service';
+import { AuthService } from '../shared/Services/Auth.service';
+import { AlertsService } from '../shared/Services/Alerts.service';
+import { Router } from '@angular/router';
+import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -12,11 +15,15 @@ export class HeaderComponent implements OnInit {
   faFireAlt = faFireAlt;
   faUserAlt = faUserAlt;
   faKey = faKey;
+  faUserTag = faUserTag;
+  faUserCircle = faUserCircle;
   formLogin: FormGroup;
   login = false;
   load: boolean = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(public authService: AuthService,
+              private alerts: AlertsService,
+              private router: Router) {}
 
   ngOnInit() {
     this.formLogin = new FormGroup({
@@ -27,6 +34,8 @@ export class HeaderComponent implements OnInit {
         Validators.maxLength(8)
       ])
     });
+
+    
   }
 
   onSubmit() {
@@ -37,22 +46,35 @@ export class HeaderComponent implements OnInit {
     this.authService.Login(this.formLogin.value).subscribe(
       next => {
         setTimeout(() => {
-          console.log('Usted se ha conectado :D');
-          this.login = true;
+          this.alerts.success('logueado correctamente');
+          this.loggedIn()
           this.load = false;
+          this.router.navigate(['/members']);
         }, 1500);
       },
       error => {
         setTimeout(() => {
-          console.log(error);
-          this.login = false;
+          this.alerts.error('Un error ha ocurrido: ' + error);
+          this.loggedIn()
           this.load = false;
         }, 1500);
       }
     );
+
+
+
+
   }
 
+  loggedIn(){
+ return this.authService.loggedIn();
+  }
+
+
   logout() {
+    localStorage.removeItem('token');
     this.login = false;
+    this.alerts.message('desconectado correctamente');
+    this.router.navigate(['/home']);
   }
 }

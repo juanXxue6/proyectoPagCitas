@@ -1,0 +1,28 @@
+<div style="margin-top: 30px">
+
+    <div class="card text-center border-dark mb-4" style="max-width: 18rem;">
+
+
+      
+      <div class="card-img-wrapper">
+      <img class="card-img-top" src="{{user.photoUrl}}" alt="{{user.knowAs}}"><img>
+      
+
+      <div class="card-body p-1" style="background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDQa53AxucJgt7-72UMu-ucFNMoGLb7eEgdQN1BfTffTKIy0db') ">
+      <ul class="list-inline member-icons animate text-cent">
+          <li class="list-inline-item"><button  [routerLink]="['/members/' ,user.id]" class="btn" style="background-color: rgba(255, 187, 98, 0.815)"> <fa-icon [icon]="faUserCircle"></fa-icon> </button></li>
+          <li class="list-inline-item"><button class="btn" style="background-color: rgba(255, 187, 98, 0.815)"> <fa-icon [icon]="faHeart"></fa-icon> </button></li>
+          <li class="list-inline-item"><button class="btn" style="background-color: rgba(255, 187, 98, 0.815)"> <fa-icon [icon]="faEnvelope"></fa-icon> </button></li>
+      </ul>
+
+
+        <h5 class="card-title"> <fa-icon [icon]="faUserAlt"></fa-icon> {{user.knowAs}}, {{user.age}}</h5>
+
+        <p class="card-text">{{user.city}}, {{user.country}}</p>
+
+          
+      </div>
+    </div>
+  </div>
+</div>
+

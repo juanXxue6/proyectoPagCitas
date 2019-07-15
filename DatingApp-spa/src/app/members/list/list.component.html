@@ -1,3 +1,8 @@
-<p>
-  list works!
-</p>
+<div class="container">
+  <div class="row">
+    <div *ngFor="let userData of users" class="col-lg-2 col-md-3 col-sm-6">
+      <app-userCard [user]="userData"></app-userCard>
+    </div>
+  </div>
+</div>
+

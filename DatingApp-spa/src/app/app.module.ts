@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { JwtModule } from '@auth0/angular-jwt';
+import {TabsModule} from 'ngx-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -18,6 +20,14 @@ import { ListComponent } from './members/list/list.component';
 import { MessagesComponent } from './members/messages/messages.component';
 import { MembersComponent } from './members/members.component';
 import { AuthGuard } from './_guards/auth.guard';
+import { userCardComponent } from './members/list/user_card/userCard.component';
+import { MemberDetailsComponent } from './members/member-details/member-details.component';
+import { from } from 'rxjs';
+
+
+export function tokenGetter() {
+   return localStorage.getItem('token')
+}
 
 
 @NgModule({
@@ -32,14 +42,27 @@ import { AuthGuard } from './_guards/auth.guard';
       MatchesComponent,
       ListComponent,
       MessagesComponent,
-      MembersComponent
+      MembersComponent,
+      userCardComponent,
+      MemberDetailsComponent
+
    ],
    imports: [
       BrowserModule,
       AppRoutingModule,
       HttpClientModule,
       FontAwesomeModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      TabsModule.forRoot(),
+      JwtModule.forRoot({
+         config: {
+         tokenGetter: tokenGetter,
+         whitelistedDomains: ['localhost:5000'],
+         blacklistedRoutes: ['localhost:5000/api/auth']
+         }
+      })
+      
+
    ],
    providers: [
       ErrorInterceptorProvide,

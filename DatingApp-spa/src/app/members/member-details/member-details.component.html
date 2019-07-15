@@ -1,0 +1,92 @@
+<app-load-spinner *ngIf="loadSpinner"></app-load-spinner>
+
+<div class="container mt-4">
+  <div class="row">
+
+    <div class="col-sm-4">
+      <div class="card border-dark text-center">
+        <img
+          class="card-img-top center-img img-size"
+          src="{{ user?.photoUrl }}"
+          alt="{{ user?.knowAs }}"
+        />
+        <div class="card-body">
+          <hr />
+          <h5 class="card-title">
+            <strong>Informacion personal de {{ user?.knowAs }}</strong>
+          </h5>
+          <p class="card-text">
+            <fa-icon [icon]="faUserCircle"></fa-icon>
+            <strong> Nombre: </strong> {{ user?.knowAs }}
+          </p>
+          <p class="card-text">
+            <fa-icon [icon]="faCake"></fa-icon> <strong> Edad: </strong>
+            {{ user?.age }}
+          </p>
+          <p class="card-text">
+            <fa-icon [icon]="faMap"></fa-icon> <strong> Localización: </strong>
+            {{ user?.city }}, {{ user?.country }}
+          </p>
+          <p class="card-text">
+            <fa-icon [icon]="faGender"></fa-icon> <strong> Genero: </strong>
+            {{ user?.gender }}
+          </p>
+          <hr />
+          <p class="card-text">
+            <fa-icon [icon]="faCalendar"></fa-icon>
+            <strong> Fecha de creación: </strong> {{ user?.created }}
+          </p>
+          <p class="card-text">
+            <fa-icon [icon]="faClock"></fa-icon>
+            <strong> Ultima conexión: </strong> {{ user?.lastActive }}
+          </p>
+          <hr />
+          <button
+            class="btn"
+            style="background-color: rgba(223, 61, 136, 0.753); margin-right: 10px;"
+          >
+            <fa-icon [icon]="faHeart"></fa-icon> Me gusta
+          </button>
+          <button
+            class="btn"
+            style="background-color: rgba(50, 186, 190, 0.753); margin-left: 10px;"
+          >
+            <fa-icon [icon]="faEnvelope"></fa-icon> Enviar mensaje
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-sm-8">
+      <div class="tab-panel">
+        <tabset class="member-tabset">
+          <tab heading="sobre {{ user?.knowAs }}">
+            <h4>Descripcion</h4>
+            <p>{{ user?.introduction }}</p>
+            <hr />
+            <h4>Buscando</h4>
+            <p>{{ user?.lookingFor }}</p>
+          </tab>
+
+          <tab heading="Intereses">
+            <h4>intereses</h4>
+            <p>{{ user?.interest }}</p>
+          </tab>
+
+          <tab heading="Fotos">
+            Aqui iran las fotos
+          </tab>
+
+          <tab heading="Mensajes">
+            Aqui iran los mensajes
+          </tab>
+        </tabset>
+      </div>
+      <div class="alinear-boton">
+      <button class="btn btn-danger" type="button"  (click)="back()"><fa-icon [icon]="faArrowLeft" ></fa-icon> Volver</button>
+    </div>
+    </div>
+
+  </div>
+</div>

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { JwtModule } from '@auth0/angular-jwt';
 import {TabsModule} from 'ngx-bootstrap';
+import { NgxGalleryModule } from 'ngx-gallery';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -22,7 +23,14 @@ import { MembersComponent } from './members/members.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { userCardComponent } from './members/list/user_card/userCard.component';
 import { MemberDetailsComponent } from './members/member-details/member-details.component';
-import { from } from 'rxjs';
+
+import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
+import { MemberListResolver } from './_resolvers/member-list.resolver';
+import { GalleryComponent } from './shared/gallery/gallery.component';
+
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { MemberEditResolver } from './_resolvers/member-edit.resolver';
+import { PhotoEditComponent } from './members/member-edit/photo-edit/photo-edit.component';
 
 
 export function tokenGetter() {
@@ -44,7 +52,10 @@ export function tokenGetter() {
       MessagesComponent,
       MembersComponent,
       userCardComponent,
-      MemberDetailsComponent
+      MemberDetailsComponent,
+      GalleryComponent,
+      MemberEditComponent,
+      PhotoEditComponent
 
    ],
    imports: [
@@ -60,13 +71,17 @@ export function tokenGetter() {
          whitelistedDomains: ['localhost:5000'],
          blacklistedRoutes: ['localhost:5000/api/auth']
          }
-      })
+      }),
+      NgxGalleryModule
       
 
    ],
    providers: [
       ErrorInterceptorProvide,
-      AuthGuard
+      AuthGuard,
+      MemberDetailResolver,
+      MemberListResolver,
+      MemberEditResolver
    ],
    bootstrap: [
       AppComponent

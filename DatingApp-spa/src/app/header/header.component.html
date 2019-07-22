@@ -20,10 +20,10 @@
         <a class="nav-link" routerLinkActive="active" routerLink="/matches">Matches <span class="sr-only"></span></a>
       </li>
       <li *ngIf="loggedIn()" class="nav-item">
-        <a class="nav-link" routerLinkActive="active" routerLink="/list">List</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/list">Lista de usuarios</a>
       </li>
       <li *ngIf="loggedIn()" class="nav-item">
-        <a class="nav-link" routerLinkActive="active" routerLink="/messages">Messages</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/messages">Mensajes</a>
       </li>
     
     </ul>
@@ -83,17 +83,15 @@
           ></a>
 
           
-
-
           <ul class="dropdown-menu bg-dark" [ngClass]="{ show: r.isOpen }">
             <li class="nav-item ">
-              <a class="nav-link" style="cursor: pointer">
-                <span class="sr-only"></span>Account</a
+              <a class="nav-link" routerLinkActive="active" routerLink="/members/edit" style="cursor: pointer">
+                <span class="sr-only"></span>Editar </a
               >
             </li>
             <li class="nav-item">
               <a class=" nav-link" style="cursor: pointer">
-                <span class="sr-only"></span>Options</a
+                <span class="sr-only"></span>Opciones</a
               >
             </li>
           </ul>

@@ -7,38 +7,38 @@
       <div class="card border-dark text-center">
         <img
           class="card-img-top center-img img-size"
-          src="{{ user?.photoUrl }}"
-          alt="{{ user?.knowAs }}"
+          src="{{ user.photoUrl }}"
+          alt="{{ user.knowAs }}"
         />
         <div class="card-body">
           <hr />
           <h5 class="card-title">
-            <strong>Informacion personal de {{ user?.knowAs }}</strong>
+            <strong>Informacion personal de {{ user.knowAs }}</strong>
           </h5>
           <p class="card-text">
             <fa-icon [icon]="faUserCircle"></fa-icon>
-            <strong> Nombre: </strong> {{ user?.knowAs }}
+            <strong> Nombre: </strong> {{ user.knowAs }}
           </p>
           <p class="card-text">
             <fa-icon [icon]="faCake"></fa-icon> <strong> Edad: </strong>
-            {{ user?.age }}
+            {{ user.age }}
           </p>
           <p class="card-text">
             <fa-icon [icon]="faMap"></fa-icon> <strong> Localización: </strong>
-            {{ user?.city }}, {{ user?.country }}
+            {{ user.city }}, {{ user.country }}
           </p>
           <p class="card-text">
             <fa-icon [icon]="faGender"></fa-icon> <strong> Genero: </strong>
-            {{ user?.gender }}
+            {{ user.gender }}
           </p>
           <hr />
           <p class="card-text">
             <fa-icon [icon]="faCalendar"></fa-icon>
-            <strong> Fecha de creación: </strong> {{ user?.created }}
+            <strong> Fecha de creación: </strong> {{ user.created }}
           </p>
           <p class="card-text">
             <fa-icon [icon]="faClock"></fa-icon>
-            <strong> Ultima conexión: </strong> {{ user?.lastActive }}
+            <strong> Ultima conexión: </strong> {{ user.lastActive }}
           </p>
           <hr />
           <button
@@ -61,25 +61,29 @@
     <div class="col-sm-8">
       <div class="tab-panel">
         <tabset class="member-tabset">
-          <tab heading="sobre {{ user?.knowAs }}">
+          <tab heading="sobre {{ user.knowAs }}">
             <h4>Descripcion</h4>
-            <p>{{ user?.introduction }}</p>
+            <p>{{ user.introduction }}</p>
             <hr />
             <h4>Buscando</h4>
-            <p>{{ user?.lookingFor }}</p>
+            <p>{{ user.lookingFor }}</p>
           </tab>
 
           <tab heading="Intereses">
             <h4>intereses</h4>
-            <p>{{ user?.interest }}</p>
+            <p>{{ user.interests }}</p>
           </tab>
 
-          <tab heading="Fotos">
-            Aqui iran las fotos
+          <tab heading="Fotos" style="text-align: center; margin-top: 20px">
+            <app-gallery [user]="user"></app-gallery>
+
           </tab>
 
           <tab heading="Mensajes">
             Aqui iran los mensajes
+
+            
+
           </tab>
         </tabset>
       </div>

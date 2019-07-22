@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { UserService } from 'src/app/shared/Services/user.service';
 import { AlertsService } from 'src/app/shared/Services/Alerts.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/_interface/user';
+
 // tslint:disable-next-line: max-line-length
 import { faUserCircle, faMapMarkedAlt, faVenusMars, faCalendarAlt, faClock, faBirthdayCake, faHeart, faEnvelope, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
@@ -12,7 +13,9 @@ import { faUserCircle, faMapMarkedAlt, faVenusMars, faCalendarAlt, faClock, faBi
   styleUrls: ['./member-details.component.css']
 })
 export class MemberDetailsComponent implements OnInit {
-  user: User;
+  @Output() user: User;
+
+
   // tslint:disable-next-line: no-inferrable-types
   loadSpinner: boolean = false;
 
@@ -35,7 +38,11 @@ export class MemberDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loadUser();
+    this.route.data.subscribe(data => {
+        this.user = data['user']
+    })
+
+
   }
 
   loadUser() {
@@ -57,6 +64,9 @@ export class MemberDetailsComponent implements OnInit {
 
     this.router.navigate(['/list']);
   }
+
+
+ 
 
 
 }

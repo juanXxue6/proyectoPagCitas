@@ -7,7 +7,12 @@ import { MembersComponent } from "./members/members.component";
 import { MatchesComponent } from "./members/matches/matches.component";
 import { MessagesComponent } from "./members/messages/messages.component";
 import { AuthGuard } from "./_guards/auth.guard";
-import { MemberDetailsComponent } from './members/member-details/member-details.component';
+import { MemberDetailsComponent } from "./members/member-details/member-details.component";
+import { MemberDetailResolver } from "./_resolvers/member-detail.resolver";
+import { MemberListResolver } from "./_resolvers/member-list.resolver";
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { MemberEditResolver } from './_resolvers/member-edit.resolver';
+import { PreventUnsave } from './_guards/prevent-unsave.guard';
 
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
@@ -17,9 +22,26 @@ const routes: Routes = [
     runGuardsAndResolvers: "always",
     canActivate: [AuthGuard],
     children: [
-      { path: "members", component: MembersComponent },
-      { path: "members/:id", component: MemberDetailsComponent },
-      { path: "list", component: ListComponent },
+      {
+        path: "members",
+        component: MembersComponent
+      },
+      {
+        path: "members/edit",
+        component: MemberEditComponent,
+        resolve: { user: MemberEditResolver },
+        canDeactivate: [PreventUnsave]
+      },
+      {
+        path: "members/:id",
+        component: MemberDetailsComponent,
+        resolve: { user: MemberDetailResolver }
+      },
+      {
+        path: "list",
+        component: ListComponent,
+        resolve: { users: MemberListResolver }
+      },
       { path: "matches", component: MatchesComponent },
       { path: "messages", component: MessagesComponent }
     ]

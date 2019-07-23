@@ -31,7 +31,8 @@ import { GalleryComponent } from './shared/gallery/gallery.component';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { PhotoEditComponent } from './members/member-edit/photo-edit/photo-edit.component';
-
+import { PhotoEditorComponent } from './members/member-edit/photo-edit/photo-editor/photo-editor.component';
+import { FileUploadModule } from 'ng2-file-upload';
 
 export function tokenGetter() {
    return localStorage.getItem('token')
@@ -54,6 +55,7 @@ export function tokenGetter() {
       userCardComponent,
       MemberDetailsComponent,
       GalleryComponent,
+      PhotoEditorComponent,
       MemberEditComponent,
       PhotoEditComponent
 
@@ -63,6 +65,7 @@ export function tokenGetter() {
       AppRoutingModule,
       HttpClientModule,
       FontAwesomeModule,
+      FileUploadModule,
       ReactiveFormsModule,
       TabsModule.forRoot(),
       JwtModule.forRoot({

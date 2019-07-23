@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
-import { User } from "src/app/_interface/user";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/_interface/user';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   faUserCircle,
   faBirthdayCake,
@@ -12,19 +12,20 @@ import {
   faEnvelope,
   faArrowLeft,
   faChevronUp
-} from "@fortawesome/free-solid-svg-icons";
-import { UserService } from "src/app/shared/Services/user.service";
-import { AlertsService } from "src/app/shared/Services/Alerts.service";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+} from '@fortawesome/free-solid-svg-icons';
+import { UserService } from 'src/app/shared/Services/user.service';
+import { AlertsService } from 'src/app/shared/Services/Alerts.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/shared/Services/Auth.service';
 
 @Component({
-  selector: "app-member-edit",
-  templateUrl: "./member-edit.component.html",
-  styleUrls: ["./member-edit.component.css"]
+  selector: 'app-member-edit',
+  templateUrl: './member-edit.component.html',
+  styleUrls: ['./member-edit.component.css']
 })
 export class MemberEditComponent implements OnInit {
   user: User;
+  photoUrl: string;
   formularioEditar: FormGroup;
 
   faUserCircle = faUserCircle;
@@ -65,9 +66,9 @@ export class MemberEditComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.user = data.user;
       this.chargeValues();
-      console.log(this.formularioEditar.value);
-      
     });
+    this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl)
+
 
   }
 
@@ -99,18 +100,12 @@ export class MemberEditComponent implements OnInit {
       introduction: this.user.introduction,
       lookingFor: this.user.lookingFor,
       interests: this.user.interests
-
     });
-
-      
-  
-
   }
 
 
 
-  newValues(){
-
+  newValues() {
     this.user.knowAs = this.formularioEditar.value.knowAs;
     this.user.city = this.formularioEditar.value.city;
     this.user.country = this.formularioEditar.value.country;
@@ -118,7 +113,10 @@ export class MemberEditComponent implements OnInit {
     this.user.lookingFor = this.formularioEditar.value.lookingFor;
     this.user.interests = this.formularioEditar.value.interests;
 
-    
+  }
+
+  updateMainPhoto(photoUrl) {
+    this.user.photoUrl = photoUrl;
   }
 
 }

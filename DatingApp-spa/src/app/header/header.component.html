@@ -5,29 +5,40 @@
   </a>
 
   <div class="collapse navbar-collapse">
-    <ul  class="navbar-nav mr-auto">
-      <li *ngIf="loggedIn()"  class="nav-item active">
+    <ul class="navbar-nav mr-auto">
+      <li *ngIf="loggedIn()" class="nav-item active">
+        <span>
+          <img
+            class="imagen-nav"
+            src="{{photoUrl}}"
+            alt=""
+          />
+        </span>
+      </li>
+
+      <li *ngIf="loggedIn()" class="nav-item active">
         <a class="nav-link">
-          <fa-icon [icon]="faUserTag" style="margin-right: 4px"></fa-icon>
-          Bienvenido {{ authService.decodedToken?.unique_name | titlecase}}
+          Bienvenido {{ authService.decodedToken?.unique_name | titlecase }}
           <span class="sr-only"></span
         ></a>
       </li>
-      
-     
-      
+
       <li *ngIf="loggedIn()" class="nav-item ">
-        <a class="nav-link" routerLinkActive="active" routerLink="/matches">Matches <span class="sr-only"></span></a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/matches"
+          >Matches <span class="sr-only"></span
+        ></a>
       </li>
       <li *ngIf="loggedIn()" class="nav-item">
-        <a class="nav-link" routerLinkActive="active" routerLink="/list">Lista de usuarios</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/list"
+          >Lista de usuarios</a
+        >
       </li>
       <li *ngIf="loggedIn()" class="nav-item">
-        <a class="nav-link" routerLinkActive="active" routerLink="/messages">Mensajes</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/messages"
+          >Mensajes</a
+        >
       </li>
-    
     </ul>
-  
 
     <div *ngIf="!loggedIn()">
       <form class="form-inline" [formGroup]="formLogin" (ngSubmit)="onSubmit()">
@@ -73,21 +84,25 @@
     <div *ngIf="loggedIn()">
       <ul class="navbar-nav mr-auto">
         <li appDropdown class="nav-item dropdown" appDropdown #r="appDropdown">
-            
           <a
             style="cursor: pointer"
             class="dropdown-toggle nav-link"
-            role="button">
+            role="button"
+          >
             <fa-icon [icon]="faUserCircle"></fa-icon>
             Profile<span class="caret sr-only"></span
           ></a>
 
-          
           <ul class="dropdown-menu bg-dark" [ngClass]="{ show: r.isOpen }">
             <li class="nav-item ">
-              <a class="nav-link" routerLinkActive="active" routerLink="/members/edit" style="cursor: pointer">
-                <span class="sr-only"></span>Editar </a
+              <a
+                class="nav-link"
+                routerLinkActive="active"
+                routerLink="/members/edit"
+                style="cursor: pointer"
               >
+                <span class="sr-only"></span>Editar
+              </a>
             </li>
             <li class="nav-item">
               <a class=" nav-link" style="cursor: pointer">

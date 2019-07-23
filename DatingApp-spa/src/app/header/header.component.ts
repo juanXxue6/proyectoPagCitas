@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { faFireAlt, faUserAlt, faKey, faUserTag, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faFireAlt, faUserAlt, faKey, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../shared/Services/Auth.service';
 import { AlertsService } from '../shared/Services/Alerts.service';
 import { Router } from '@angular/router';
-import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -12,10 +11,15 @@ import { empty } from 'rxjs';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  
+  model: any = {};
+  photoUrl: string;
+  
+  
+  
   faFireAlt = faFireAlt;
   faUserAlt = faUserAlt;
   faKey = faKey;
-  faUserTag = faUserTag;
   faUserCircle = faUserCircle;
   formLogin: FormGroup;
   login = false;
@@ -35,7 +39,9 @@ export class HeaderComponent implements OnInit {
       ])
     });
 
-    
+    this.authService.currentPhotoUrl.subscribe(photoUrl =>{
+      this.photoUrl = photoUrl;
+    })
   }
 
   onSubmit() {
@@ -73,7 +79,10 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     this.login = false;
+    this.authService.decodedToken = null;
+    this.authService.currentUser = null;
     this.alerts.message('desconectado correctamente');
     this.router.navigate(['/home']);
   }

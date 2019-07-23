@@ -1,84 +1,77 @@
-
 <div class="container mt-4">
-    <form [formGroup]="formularioEditar" (ngSubmit)="onSubmit()">
-  <div class="row">
-    <div class="col-sm-4">
-      <h1>Tu perfil</h1>
-    </div>
-    <div class="col-sm-8">
-      <div *ngIf="formularioEditar.dirty" class="alert alert-info">
-        <p>
-          <strong>Atencion: </strong> Has realizado cambios, sino son guardados
-          se perderan
-        </p>
+  <form [formGroup]="formularioEditar" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-sm-4">
+        <h1>Tu perfil</h1>
       </div>
-    </div>
-  </div>
-
- 
-
-  <div class="row">
-    <div class="col-sm-4">
-      <div class="card border-dark text-center">
-        <img
-          class="card-img-top center-img img-size"
-          src="{{ user.photoUrl }}"
-          alt="{{ user.knowAs }}"
-        />
-        <div class="card-body">
-          <hr />
-          <h5 class="card-title">
-            <strong>Informacion personal de {{ user.knowAs }}</strong>
-          </h5>
-          <p class="card-text">
-            <fa-icon [icon]="faUserCircle"></fa-icon>
-            <strong> Nombre: </strong>
-            <input
-            class="form-control"
-            type='text'
-            formControlName="knowAs"
-            >
-           
+      <div class="col-sm-8">
+        <div *ngIf="formularioEditar.dirty" class="alert alert-info">
+          <p>
+            <strong>Atencion: </strong> Has realizado cambios, sino son
+            guardados se perderan
           </p>
-          <p class="card-text">
-            <fa-icon [icon]="faCake"></fa-icon> <strong> Edad: </strong>
-            {{ user.age }}
-          </p>
-          <p class="card-text">
-            <fa-icon [icon]="faMap"></fa-icon> <strong> Localización: </strong>
-            ciudad
-            <input
-            class="form-control"
-            type='text'
-            formControlName="city"
-            >
-            pais
-            <input
-            class="form-control"
-            type='text'
-            formControlName="country"
-            >
-          </p>
-          <p class="card-text">
-            <fa-icon [icon]="faGender"></fa-icon> <strong> Genero: </strong>
-            {{ user.gender }}
-          </p>
-          <hr />
-          <button
-            type="submit"
-            class="btn"
-            [disabled]="!formularioEditar.dirty || !formularioEditar.valid"
-            style="background-color: rgba(17, 129, 41, 0.753); margin-right: 10px;"
-          ><fa-icon [icon]="faChevronUp"></fa-icon> Actualizar
-          </button>
         </div>
       </div>
     </div>
 
-    <div class="col-sm-8">
-      <div class="tab-panel">
-        <tabset class="member-tabset">
-          
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card border-dark text-center">
+          <img
+            class="card-img-top center-img img-size"
+            src="{{ photoUrl }}"
+            alt="{{ user.knowAs }}"
+          />
+          <div class="card-body">
+            <hr />
+            <h5 class="card-title">
+              <strong>Informacion personal de {{ user.knowAs }}</strong>
+            </h5>
+            <p class="card-text">
+              <fa-icon [icon]="faUserCircle"></fa-icon>
+              <strong> Nombre: </strong>
+              <input
+                class="form-control"
+                type="text"
+                formControlName="knowAs"
+              />
+            </p>
+            <p class="card-text">
+              <fa-icon [icon]="faCake"></fa-icon> <strong> Edad: </strong>
+              {{ user.age }}
+            </p>
+            <p class="card-text">
+              <fa-icon [icon]="faMap"></fa-icon>
+              <strong> Localización: </strong>
+              ciudad
+              <input class="form-control" type="text" formControlName="city" />
+              pais
+              <input
+                class="form-control"
+                type="text"
+                formControlName="country"
+              />
+            </p>
+            <p class="card-text">
+              <fa-icon [icon]="faGender"></fa-icon> <strong> Genero: </strong>
+              {{ user.gender }}
+            </p>
+            <hr />
+            <button
+              type="submit"
+              class="btn"
+              [disabled]="!formularioEditar.dirty || !formularioEditar.valid"
+              style="background-color: rgba(17, 129, 41, 0.753); margin-right: 10px;"
+            >
+              <fa-icon [icon]="faChevronUp"></fa-icon> Actualizar
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-8">
+        <div class="tab-panel">
+          <tabset class="member-tabset">
             <tab heading="Editar perfil">
               <h4>introducción</h4>
               <textarea
@@ -94,27 +87,29 @@
                 rows="6"
               ></textarea>
             </tab>
-          
 
-          <tab heading="Editar intereses">
-            <h4>intereses</h4>
-            <textarea
-              formControlName="interests"
-              class="form-control"
-              rows="6"
-            ></textarea>
-          </tab>
-        
-          <tab
-            heading="Editar fotos"
-            style="text-align: center; margin-top: 20px; margin-left: 20px;"
-          >
-            <app-photo-edit [photos]="user.photos"></app-photo-edit>
-          </tab>
-        </tabset>
+            <tab heading="Editar intereses">
+              <h4>intereses</h4>
+              <textarea
+                formControlName="interests"
+                class="form-control"
+                rows="6"
+              ></textarea>
+            </tab>
+
+            <tab
+              heading="Editar fotos"
+              style="text-align: center; margin-top: 20px; margin-left: 20px;"
+            >
+              <app-photo-editor [photos]="user.photos"> </app-photo-editor>
+              <br />
+              <hr />
+              <app-photo-edit [photos]="user.photos" 
+              (getMemberPhotoChange)="updateMainPhoto($event)"></app-photo-edit>
+            </tab>
+          </tabset>
+        </div>
       </div>
     </div>
-  </div>
-</form>
+  </form>
 </div>
-

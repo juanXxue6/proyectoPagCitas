@@ -2,7 +2,12 @@ img.img-thumbnail {
 
     height: 100px;
     min-width: 100px !important;
-    margin-bottom: 2px;
+    margin-bottom: 7px;
+}
+
+.color-boton{
+
+background-color: rgba(62, 126, 104, 0.281);
 
 
 }

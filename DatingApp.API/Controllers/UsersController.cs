@@ -4,14 +4,17 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using DatingApp.API.Dtos;
+using DatingApp.API.helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DatingApp.API.Data
 {
+    [ServiceFilter(typeof(logUserActivity))]
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
+
         public class UsersController : ControllerBase
     {
 
@@ -36,7 +39,7 @@ namespace DatingApp.API.Data
             
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}",Name ="GetUser")]
         public async Task<IActionResult> GetUser(int id)
         {
 

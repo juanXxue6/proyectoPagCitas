@@ -1,0 +1,12 @@
+.botonDiv{
+
+margin-right: 190px;
+
+
+}
+
+input[type="text"], input[type="password"] {
+    width: 200px;
+    height: 40px;
+    
+}

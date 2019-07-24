@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark">
-  <a class="navbar-brand" routerLink="/home">
+  <a class="navbar-brand" routerLink="/members">
     <fa-icon [icon]="faFireAlt"></fa-icon>
     DateApp
   </a>
@@ -8,11 +8,7 @@
     <ul class="navbar-nav mr-auto">
       <li *ngIf="loggedIn()" class="nav-item active">
         <span>
-          <img
-            class="imagen-nav"
-            src="{{photoUrl}}"
-            alt=""
-          />
+          <img class="imagen-nav" src="{{ photoUrl || '../../../../assets/user.png' }}" alt="" />
         </span>
       </li>
 
@@ -90,7 +86,7 @@
             role="button"
           >
             <fa-icon [icon]="faUserCircle"></fa-icon>
-            Profile<span class="caret sr-only"></span
+            Perfil<span class="caret sr-only"></span
           ></a>
 
           <ul class="dropdown-menu bg-dark" [ngClass]="{ show: r.isOpen }">
@@ -118,7 +114,7 @@
           type="button"
           (click)="logout()"
         >
-          Logout
+          Salir
         </button>
       </ul>
     </div>

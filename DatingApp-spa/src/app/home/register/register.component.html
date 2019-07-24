@@ -6,38 +6,92 @@
   <div class="container">
     <div
       class="row justify-content-md-center col-md-auto "
-      style="text-align: center"
+      style="background-color: rgba(241, 238, 235, 0.541);"
     >
       <form [formGroup]="registerForm" readonly>
-        <h2 class="text-center text-primary">Unete a nosotros</h2>
-        <hr />
+        <h2
+          class="text-center  fascinate"
+          style="font-size: 37px; margin-top: 15px;"
+        >
+          Unete a nosotros
+        </h2>
+        <hr/>
+
+        <div class="form-group">
+          <div class="input-group-prepend">
+            <label class="control-label" style="margin-right:10px">
+              <span class="input-group-text">
+                <fa-icon [icon]="faVenusMars"> </fa-icon> </span
+            ></label>
+            <div style="margin-top: 8px;">
+              <label class="radio-inline">
+                <input
+                  class="mr-1"
+                  type="radio"
+                  value="masculino"
+                  name="gender"
+                  formControlName="gender"
+                />hombre
+              </label>
+              <label class="radio-inline ml-3">
+                <input
+                  class="mr-1"
+                  type="radio"
+                  value="femenino"
+                  name="gender"
+                  formControlName="gender"
+                />mujer
+              </label>
+              <label class="radio-inline ml-3">
+                <input
+                  class="mr-1"
+                  type="radio"
+                  value="otro"
+                  name="gender"
+                  formControlName="gender"
+                />otro
+              </label>
+            </div>
+          </div>
+        </div>
+
         <div class="form-group">
           <div class="input-group-prepend">
             <span class="input-group-text">
               <fa-icon [icon]="faUserAlt"></fa-icon>
             </span>
-            <input
-              type="text"
-              formControlName="username"
-              class="form-control"
-              placeholder="Username"
-            />
+
+           
+                <kendo-textbox-container floatingLabel="Usuario">
+                    <input
+                      kendoTextBox
+                      type="text"
+                      formControlName="username"
+                      class="form-control form-control-lg "
+                    />
+                  </kendo-textbox-container>
+                
+
           </div>
         </div>
+
+       
+
+
 
         <div class="form-group" style="margin-top: 20px">
           <div class="input-group-prepend">
             <span class="input-group-text">
-              <fa-icon [icon]="faToriiGate"></fa-icon>
+              <fa-icon [icon]="faKey"></fa-icon>
             </span>
-            <select formControlName="value" class="form-control">
-              <option
-                selected
-                *ngFor="let value of valuesFromHome"
-                [value]="value"
-                >{{ value.name }}</option
-              >
-            </select>
+            <kendo-textbox-container floatingLabel="contraseña">
+              <input
+                kendoTextBox
+                type="password"
+                formControlName="password"
+                class="form-control form-control-lg"
+              />
+            </kendo-textbox-container>
           </div>
         </div>
 
@@ -46,52 +100,101 @@
             <span class="input-group-text">
               <fa-icon [icon]="faKey"></fa-icon>
             </span>
-            <input
-              type="password"
-              formControlName="password"
-              class="form-control"
-              placeholder="Password"
-            />
+            <kendo-textbox-container floatingLabel="repite la contraseña">
+              <input
+                kendoTextBox
+                type="password"
+                formControlName="repeatPassword"
+                class="form-control form-control-lg"
+              />
+            </kendo-textbox-container>
           </div>
         </div>
 
-        <button
-          class="btn btn-success btn-lg mr-2"
-          type="submit"
-          (click)="register()"
-        >
-          Register now
-        </button>
-        <button
-          style="margin-left: 40px;"
-          class="btn btn-success btn-lg mr-2"
-          type="button"
-          (click)="cancelEvent()"
-        >
-          Cancel
-        </button>
-      </form>
+        <div class="form-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <fa-icon [icon]="faSmile"></fa-icon>
+            </span>
+            <kendo-textbox-container floatingLabel="Conocid@ Como">
+              <input
+                kendoTextBox
+                type="text"
+                formControlName="knowAs"
+                class="form-control form-control-lg"
+              />
+            </kendo-textbox-container>
+          </div>
+        </div>
 
-      <!-- <form [formGroup]="registerForm">
-    <div class="form-group">
-        <label for="email">Username</label>
-        <input type="text" 
-        id="username" 
-        class="form-control"
-        formControlName="username"
-        >
-    </div>
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" 
-        id="password"
-         class="form-control"
-         formControlName="password">
-    </div>
-    <div>
-        <button class="btn btn-success" type="button" > Register now</button> 
-    </div>
-</form> -->
+        <div class="form-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <fa-icon [icon]="faCalendarAlt"></fa-icon>
+            </span>
+            <kendo-textbox-container floatingLabel="fecha de nacimiento">
+              <kendo-datepicker
+                formControlName="date"
+                formatPlaceholder="wide"
+                class="form-control form-control-lg"
+              ></kendo-datepicker>
+            </kendo-textbox-container>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <fa-icon [icon]="faCity"></fa-icon>
+            </span>
+            <kendo-textbox-container floatingLabel="Ciudad">
+              <input
+                kendoTextBox
+                type="text"
+                formControlName="city"
+                class="form-control form-control-lg"
+              />
+            </kendo-textbox-container>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <fa-icon [icon]="faFlag"></fa-icon>
+            </span>
+            <kendo-textbox-container floatingLabel="Pais">
+              <input
+                kendoTextBox
+                type="text"
+                formControlName="country"
+                class="form-control form-control-lg"
+              />
+            </kendo-textbox-container>
+          </div>
+        </div>
+
+        <br />
+
+        <div class="botonDiv">
+          <button
+            class="btn btn-success  mr-2"
+            type="submit"
+            (click)="register()"
+          >
+          <fa-icon [icon]="faFireAlt"></fa-icon>
+            Registrate ahora
+          </button>
+          <button
+            style="margin-left: 10px;"
+            class="btn btn-danger btn mr-2"
+            type="button"
+            (click)="cancelEvent()"
+          >
+            cancelar
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

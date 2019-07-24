@@ -1,3 +1,5 @@
+
+
 <div *ngIf="!register">
     <div class="container mt-5">
         <div style ="text-align: center">
@@ -14,11 +16,19 @@
 <div *ngIf="register">
         <div class="container mt-5">
             <div style ="text-align: center">
-               <app-register [valuesFromHome]="values" (LeaveRegister)="registerMode($event)"></app-register>
+               <app-register  (LeaveRegister)="registerMode($event)"></app-register>
                 <div class="text-center">
                 </div>
             </div>
         </div>
     </div>
-    
+
+
+
+<p class="fascinate" style="font-size: 40px">ejemplo de fascinate</p>
+<p class="noto-sans-jp" style="font-size: 40px">ejemplo de noto sans jp</p>
+<p class="indie-flower" style="font-size: 40px">ejemplo de indie flower</p>
+<p class="source-code-pro" style="font-size: 40px">ejemplo source code pro</p>
+<p class="darker-grotesque" style="font-size: 40px">ejemplo de darker grotesque</p>
+
 

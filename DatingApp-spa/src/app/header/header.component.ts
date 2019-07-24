@@ -16,7 +16,6 @@ export class HeaderComponent implements OnInit {
   photoUrl: string;
   
   
-  
   faFireAlt = faFireAlt;
   faUserAlt = faUserAlt;
   faKey = faKey;
@@ -31,11 +30,13 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.formLogin = new FormGroup({
-      username: new FormControl(null, Validators.required),
+      username: new FormControl(null, [Validators.required,
+      Validators.pattern('[a-zA-Z0-9_-]*'),
+      Validators.maxLength(10)]),
       password: new FormControl(null, [
         Validators.required,
-        Validators.minLength(4),
-        Validators.maxLength(8)
+        Validators.minLength(6),
+        Validators.maxLength(16)
       ])
     });
 
@@ -51,19 +52,19 @@ export class HeaderComponent implements OnInit {
 
     this.authService.Login(this.formLogin.value).subscribe(
       next => {
-        setTimeout(() => {
+        
           this.alerts.success('logueado correctamente');
           this.loggedIn()
           this.load = false;
           this.router.navigate(['/members']);
-        }, 1500);
+        
       },
       error => {
-        setTimeout(() => {
+        
           this.alerts.error('Un error ha ocurrido: ' + error);
           this.loggedIn()
           this.load = false;
-        }, 1500);
+        
       }
     );
 

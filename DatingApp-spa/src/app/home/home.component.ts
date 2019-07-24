@@ -9,34 +9,17 @@ import { HttpClient } from '@angular/common/http';
 export class HomeComponent implements OnInit {
   title = 'DatingApp-spa';
   register: boolean = false;
-  values: any;
- 
+
 
   constructor(private http: HttpClient) { }
 
   ngOnInit(){
-
   }
-
 
   registerMode(){
       this.register = !this.register;
   }
 
-
-  getValues(){
-
-    this.http.get('http://localhost:5000/api/values')
-    .subscribe(response => {
-      this.values = response;
-
-    }, error =>{
-        console.log(error);
-    })
-
-
-
-  }
 
 
 }

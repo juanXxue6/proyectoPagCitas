@@ -33,6 +33,15 @@ import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { PhotoEditComponent } from './members/member-edit/photo-edit/photo-edit.component';
 import { PhotoEditorComponent } from './members/member-edit/photo-edit/photo-editor/photo-editor.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InputsModule } from '@progress/kendo-angular-inputs';
+import { LabelModule } from '@progress/kendo-angular-label';
+import {TimeAgoPipe} from 'time-ago-pipe';
+
+
+
+
 
 export function tokenGetter() {
    return localStorage.getItem('token')
@@ -57,7 +66,8 @@ export function tokenGetter() {
       GalleryComponent,
       PhotoEditorComponent,
       MemberEditComponent,
-      PhotoEditComponent
+      PhotoEditComponent,
+      TimeAgoPipe
 
    ],
    imports: [
@@ -75,10 +85,15 @@ export function tokenGetter() {
          blacklistedRoutes: ['localhost:5000/api/auth']
          }
       }),
-      NgxGalleryModule
+      NgxGalleryModule,
+      DateInputsModule,
+      BrowserAnimationsModule,
+      InputsModule,
+      LabelModule
       
 
    ],
+   
    providers: [
       ErrorInterceptorProvide,
       AuthGuard,

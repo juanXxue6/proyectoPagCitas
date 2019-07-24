@@ -45,3 +45,15 @@
     border-top: 1px solid #eee;
     padding: 15px 0;
   }
+
+.fascinate {font-family: 'Fascinate', cursive;}
+.noto-sans-jp {font-family: 'Noto Sans JP', sans-serif;}
+.indie-flower{font-family: 'Indie Flower', cursive;}
+.source-code-pro, input {font-family: 'Source Code Pro', monospace;}
+.darker-grotesque{font-family: 'Darker Grotesque', sans-serif;}
+
+body{
+
+background-color: antiquewhite
+
+}

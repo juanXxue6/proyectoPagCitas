@@ -5,7 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/_interface/user';
 
 // tslint:disable-next-line: max-line-length
-import { faUserCircle, faMapMarkedAlt, faVenusMars, faCalendarAlt, faClock, faBirthdayCake, faHeart, faEnvelope, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle, faMapMarkedAlt, faVenusMars, faCalendarAlt, faClock, faBirthdayCake, faHeart, faEnvelope, faArrowLeft, faHeartBroken } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from 'src/app/shared/Services/Auth.service';
 
 @Component({
   selector: 'app-member-details',
@@ -28,9 +29,11 @@ export class MemberDetailsComponent implements OnInit {
   faHeart = faHeart;
   faEnvelope = faEnvelope;
   faArrowLeft = faArrowLeft;
+  faHeartBroken = faHeartBroken;
 
 
   constructor(
+    private authService: AuthService,
     private userService: UserService,
     private AlertService: AlertsService,
     private route: ActivatedRoute,
@@ -66,7 +69,33 @@ export class MemberDetailsComponent implements OnInit {
   }
 
 
- 
+  sendLike(id: number){
+
+    this.userService.sendLike(this.authService.decodedToken.nameid, id).subscribe(data =>{
+      this.AlertService.success("Has dado me gusta a " + this.user.knowAs);
+    }, error =>{
+        this.AlertService.error(error);
+    });
+
+
+  }
+
+
+  sendDislike(id: number){
+
+    this.AlertService.confirm("¿Seguro que quieres borrar el like al usuario?", () => {
+      this.userService.sendDislike(this.authService.decodedToken.nameid, id)
+      .subscribe(data =>{
+          this.AlertService.success("Has quitado el like correctamente a " + this.user.knowAs);
+      }, error =>{
+        this.AlertService.error(error);
+      })
+
+    });
+
+    this.loadUser();
+  }
+
 
 
 }

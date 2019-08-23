@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';;
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { DropdownDirective } from './shared/dropdown/dropdown.directive';
 import { LoadSpinnerComponent } from './shared/Load-spinner/load-spinner.component';
@@ -38,6 +38,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { LabelModule } from '@progress/kendo-angular-label';
 import {TimeAgoPipe} from 'time-ago-pipe';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { MatchResolver } from './_resolvers/Match.resolver';
 
 
 
@@ -76,6 +79,7 @@ export function tokenGetter() {
       HttpClientModule,
       FontAwesomeModule,
       FileUploadModule,
+      FormsModule,
       ReactiveFormsModule,
       TabsModule.forRoot(),
       JwtModule.forRoot({
@@ -89,7 +93,9 @@ export function tokenGetter() {
       DateInputsModule,
       BrowserAnimationsModule,
       InputsModule,
-      LabelModule
+      LabelModule,
+      PaginationModule.forRoot(),
+      ButtonsModule.forRoot()
       
 
    ],
@@ -99,7 +105,8 @@ export function tokenGetter() {
       AuthGuard,
       MemberDetailResolver,
       MemberListResolver,
-      MemberEditResolver
+      MemberEditResolver,
+      MatchResolver
    ],
    bootstrap: [
       AppComponent

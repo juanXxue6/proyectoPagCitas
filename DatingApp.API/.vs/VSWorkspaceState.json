@@ -8,6 +8,6 @@
     "\\Migrations",
     "\\models"
   ],
-  "SelectedNode": "\\Controllers\\AuthController.cs",
+  "SelectedNode": "\\helpers\\PagedList.cs",
   "PreviewInSolutionExplorer": false
 }

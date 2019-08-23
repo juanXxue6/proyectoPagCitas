@@ -41,18 +41,30 @@
             <strong> Ultima conexión: </strong> {{ user.lastActive | timeAgo }}
           </p>
           <hr />
+
           <button
             class="btn"
-            style="background-color: rgba(223, 61, 136, 0.753); margin-right: 10px;"
+            style="background-color: rgba(223, 61, 136, 0.753); margin-right: 6px; margin-bottom: 6px;"
+            (click)="sendLike(user.id)"
           >
             <fa-icon [icon]="faHeart"></fa-icon> Me gusta
           </button>
+
+          <button
+          class="btn"
+          style="background-color: rgba(97, 11, 11, 0.753); margin-right: 6px; margin-bottom: 6px;"
+          (click)="sendDislike(user.id)"
+        >
+          <fa-icon [icon]="faHeart"></fa-icon> Ya no me gusta
+        </button>
+
           <button
             class="btn"
-            style="background-color: rgba(50, 186, 190, 0.753); margin-left: 10px;"
+            style="background-color: rgba(50, 186, 190, 0.753); margin-right: 30px;"
           >
             <fa-icon [icon]="faEnvelope"></fa-icon> Enviar mensaje
           </button>
+
         </div>
       </div>
     </div>

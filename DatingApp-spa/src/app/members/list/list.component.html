@@ -1,4 +1,4 @@
-<div class="text-center mt-3 indie-flower">
+<div class="text-center mt-3 noto-sans-jp">
   <h2>Personas encontradas - {{pagination.totalItems}} </h2>
 </div>
 
@@ -6,7 +6,7 @@
 
     <form  class="form-inline d-flex justify-content-center" #form="ngForm" (ngSubmit)="loadUser()" novalidate>
       
-        <div class="form-group">
+        <div class="form-group source-code-pro">
           <label for="minAge">Edad minima</label>
           <input 
           type="number"  
@@ -17,7 +17,7 @@
           name="minAge">
         </div>
       
-        <div class="form-group px-2">
+        <div class="form-group px-2 source-code-pro">
           <label for="maxAge">Edad Maxima</label>
           <input 
           type="number"
@@ -28,7 +28,7 @@
           name="maxAge">
         </div>
       
-        <div class="form-group px-2">
+        <div class="form-group px-2 source-code-pro">
           <label for="gender">Genero: </label>
           <select 
           class="form-control ml-1"
@@ -41,8 +41,8 @@
             </option>
           </select>
         </div>
-        <button type="submit" class="btn btn-primary" style="margin-left:10px">Aplicar filtros</button>
-        <button type="button" class="btn btn-info" (click)="resetFilters()" style="margin-left:10px">Resetear filtros</button>
+        <button type="submit" class="btn btn-primary source-code-pro" style="margin-left:10px">Aplicar filtros</button>
+        <button type="button" class="btn btn-info source-code-pro" (click)="resetFilters()" style="margin-left:10px">Resetear filtros</button>
       
 
      

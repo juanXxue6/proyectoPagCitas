@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/shared/Services/user.service';
 import { AlertsService } from 'src/app/shared/Services/Alerts.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -7,6 +7,7 @@ import { User } from 'src/app/_interface/user';
 // tslint:disable-next-line: max-line-length
 import { faUserCircle, faMapMarkedAlt, faVenusMars, faCalendarAlt, faClock, faBirthdayCake, faHeart, faEnvelope, faArrowLeft, faHeartBroken } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/shared/Services/Auth.service';
+import { TabsetComponent } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-member-details',
@@ -15,7 +16,7 @@ import { AuthService } from 'src/app/shared/Services/Auth.service';
 })
 export class MemberDetailsComponent implements OnInit {
   @Output() user: User;
-
+  @ViewChild('staticTabs', { static: true }) staticTabs: TabsetComponent;
 
   // tslint:disable-next-line: no-inferrable-types
   loadSpinner: boolean = false;
@@ -45,6 +46,11 @@ export class MemberDetailsComponent implements OnInit {
         this.user = data['user']
     })
 
+    this.route.queryParams.subscribe(params =>{
+      const selectedTab = params['tab'];
+      console.log(selectedTab)
+      this.staticTabs.tabs[selectedTab > 0 ? selectedTab : 0].active = true;
+    })
 
   }
 
@@ -64,7 +70,6 @@ export class MemberDetailsComponent implements OnInit {
 
 
   back() {
-
     this.router.navigate(['/list']);
   }
 
@@ -82,7 +87,6 @@ export class MemberDetailsComponent implements OnInit {
 
 
   sendDislike(id: number){
-
     this.AlertService.confirm("¿Seguro que quieres borrar el like al usuario?", () => {
       this.userService.sendDislike(this.authService.decodedToken.nameid, id)
       .subscribe(data =>{
@@ -96,6 +100,8 @@ export class MemberDetailsComponent implements OnInit {
     this.loadUser();
   }
 
-
+  selectTab(tabId: number) {
+    this.staticTabs.tabs[tabId].active = true;
+  }
 
 }

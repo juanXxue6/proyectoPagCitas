@@ -14,7 +14,8 @@
 
           <li class="list-inline-item"><button (click)="sendLike(user.id)" class="btn" style="background-color: rgba(255, 187, 98, 0.815)"> <fa-icon [icon]="faHeart"></fa-icon> </button></li>
           
-          <li class="list-inline-item"><button class="btn" style="background-color: rgba(255, 187, 98, 0.815)"> <fa-icon [icon]="faEnvelope"></fa-icon> </button></li>
+          <li class="list-inline-item"><button [routerLink]="['/members',user.id]" 
+            [queryParams]="{tab: 3}"  class="btn" style="background-color: rgba(255, 187, 98, 0.815)"> <fa-icon [icon]="faEnvelope"></fa-icon> </button></li>
 
       </ul>
 

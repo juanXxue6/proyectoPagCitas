@@ -4,7 +4,7 @@
   <div class="row">
 
     <div class="col-sm-4">
-      <div class="card border-dark text-center">
+      <div class="card  text-center borde-carta-izquierda">
         <img
           class="card-img-top center-img img-size"
           src="{{ user.photoUrl || '../../../../../assets/user.png'  }}"
@@ -55,12 +55,13 @@
           style="background-color: rgba(97, 11, 11, 0.753); margin-right: 6px; margin-bottom: 6px;"
           (click)="sendDislike(user.id)"
         >
-          <fa-icon [icon]="faHeart"></fa-icon> Ya no me gusta
+          <fa-icon [icon]="faHeartBroken"></fa-icon> Ya no me gusta
         </button>
 
           <button
             class="btn"
             style="background-color: rgba(50, 186, 190, 0.753); margin-right: 30px;"
+            (click)="selectTab(3)"
           >
             <fa-icon [icon]="faEnvelope"></fa-icon> Enviar mensaje
           </button>
@@ -72,7 +73,7 @@
 
     <div class="col-sm-8">
       <div class="tab-panel">
-        <tabset class="member-tabset">
+        <tabset class="member-tabset" #staticTabs>
           <tab heading="sobre {{ user.knowAs }}">
             <h4>Descripcion</h4>
             <p>{{ user.introduction }}</p>
@@ -92,8 +93,8 @@
           </tab>
 
           <tab heading="Mensajes">
-            Aqui iran los mensajes
-
+           
+            <app-member-messages [recipientId]="user.id"></app-member-messages>
             
 
           </tab>

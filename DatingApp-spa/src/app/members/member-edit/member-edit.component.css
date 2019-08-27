@@ -19,3 +19,7 @@ img {
     width: 85%;
     height: 85%;
 }
+
+.color-fondo{
+  background-color: red;
+}

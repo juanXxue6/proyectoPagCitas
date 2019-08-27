@@ -1,0 +1,23 @@
+.color-botones{
+
+    background-color: rgba(238, 191, 104, 0.657)
+
+}
+.hover:hover{
+
+    background-color: rgba(218, 209, 209, 0.808);
+
+}
+
+table {
+    text-align:center;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border-bottom: 1px solid #ddd;
+  }
+
+  td {
+    vertical-align:middle;
+  }

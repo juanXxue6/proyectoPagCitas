@@ -26,6 +26,12 @@ margin-top: 40px;
 text-align: right;
 
 }
+
+
+.borde-carta-izquierda {
+
+  border: 3px solid rgb(161, 161, 161);
+}
 /*------------------------------*/
 
 

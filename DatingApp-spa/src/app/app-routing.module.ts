@@ -14,6 +14,7 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { PreventUnsave } from './_guards/prevent-unsave.guard';
 import { MatchResolver } from './_resolvers/Match.resolver';
+import { MessagesResolver } from './_resolvers/messages.resolver';
 
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
@@ -43,8 +44,16 @@ const routes: Routes = [
         component: ListComponent,
         resolve: { users: MemberListResolver }
       },
-      { path: "matches", component: MatchesComponent, resolve: {users: MatchResolver}},
-      { path: "messages", component: MessagesComponent }
+      { 
+        path: "matches", 
+        component: MatchesComponent, 
+        resolve: {users: MatchResolver}
+      },
+      { 
+      path: "messages", 
+      component: MessagesComponent,
+      resolve: { messages: MessagesResolver} 
+    }
     ]
   },
 

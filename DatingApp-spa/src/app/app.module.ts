@@ -41,6 +41,8 @@ import {TimeAgoPipe} from 'time-ago-pipe';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { MatchResolver } from './_resolvers/Match.resolver';
+import { MessagesResolver } from './_resolvers/messages.resolver';
+import { MemberMessagesComponent } from './shared/member-messages/member-messages.component';
 
 
 
@@ -70,7 +72,8 @@ export function tokenGetter() {
       PhotoEditorComponent,
       MemberEditComponent,
       PhotoEditComponent,
-      TimeAgoPipe
+      TimeAgoPipe,
+      MemberMessagesComponent
 
    ],
    imports: [
@@ -106,7 +109,8 @@ export function tokenGetter() {
       MemberDetailResolver,
       MemberListResolver,
       MemberEditResolver,
-      MatchResolver
+      MatchResolver,
+      MessagesResolver
    ],
    bootstrap: [
       AppComponent
